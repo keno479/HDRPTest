@@ -1,0 +1,17 @@
+Enemy_ID,Enemy_Name,Enemy_Type,HP,Attack,Base_EXP,Base_Gold,Drop_Item_ID1,Drop_Item_ID2,Drop_Item_ID3,LV_min,LV_max,Boss
+1,Goblin,Goblin,3,2,10,10,1,2,3,1,4,FALSE
+2,ChestMonster,ChestMonster,6,4,20,15,4,5,6,5,8,FALSE
+3,Beholder,Beholder,9,6,30,20,7,8,9,14,20,FALSE
+4,Spider_Purple,Speder,12,8,40,25,10,11,12,25,33,FALSE
+5,Spider_Red,Speder,15,10,50,30,13,14,15,50,1000,FALSE
+6,Spider_Green,Speder,18,12,60,35,1,2,3,2,1001,FALSE
+7,Rhinoceros,Rhinoceros,21,14,70,40,2,3,4,6,1002,FALSE
+8,X_Green,X,24,16,80,45,3,4,5,15,1003,FALSE
+9,X_Turquoise,X,27,18,90,50,4,5,6,26,1004,FALSE
+10,FBX_Orange,FBX,30,20,100,55,5,6,7,51,1005,FALSE
+11,FBX_Sandmale,FBX,33,22,110,60,6,7,8,3,1006,FALSE
+12,FBX_Blue,FBX,36,24,120,65,7,8,9,4,1007,FALSE
+101,GreenDragon,Dragon,39,26,130,70,7,8,9,25,25,TRUE
+102,AlbinoDragon,Dragon,42,28,140,75,8,9,10,25,25,TRUE
+103,BlueDragon,Dragon,45,30,150,80,9,10,11,26,26,TRUE
+104,PurpleDragon,Dragon,48,32,160,85,10,11,12,27,27,TRUE

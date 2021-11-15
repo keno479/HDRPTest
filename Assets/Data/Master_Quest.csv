@@ -1,0 +1,4 @@
+﻿Quest_ID,Quest_Content,Target_Type,Target_ID,Goal,Reward_Type,Reward_ID
+1,モンスター300体の討伐,Monster,100,300,1,1
+2,リノセロス10体の討伐,Rhinoceros,5,10,1,2
+3,恐竜100体の討伐,FBX,100,100,1,3

@@ -1,0 +1,6 @@
+﻿Stage_ID,Stage_Name,Boss_Pop_LV,Boss_Enemy_ID,Key_Boss_ID,Scene_Name
+1,自宅,0,0,0,Home
+2,森,10,101,0,Field1
+3,岩場,30,102,101,Field2
+4,川,50,103,102,Field3
+5,雪山,70,104,103,Field4

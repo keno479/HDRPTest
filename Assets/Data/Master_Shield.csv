@@ -1,0 +1,4 @@
+Shield_ID,Shield_Name,Defense,Craft_Item_ID1,Craft_Item1_Value,Craft_Item_ID2,Craft_Item2_Value,Craft_Item_ID3,Craft_Item3_Value,Sprite_Name,Craft_Gold_Cost
+1,Shield1,1,2,10,3,15,4,0,3C,8000
+2,Shield2,2,1,20,13,20,9,20,9,10000
+3,Shield3,3,11,30,8,20,10,50,Iron Shield,12000
