@@ -92,6 +92,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 1
     - _AlphaCutoff: 0.5
@@ -158,7 +159,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.0642131, g: 0.31098324, b: 0.36792433, a: 1}
+    - _Color: {r: 0.23834105, g: 0.3747484, b: 0.49056602, a: 1}
     - _Color0: {r: 1, g: 0, b: 0, a: 0}
     - _Color01: {r: 0.25607264, g: 0.4339623, b: 0.13714845, a: 1}
     - _Color02: {r: 0.35108614, g: 0.5377358, b: 0.22574759, a: 0}
@@ -168,3 +169,4 @@ Material:
     - _TranslucencyColor: {r: 0.72321427, g: 1, b: 0, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
