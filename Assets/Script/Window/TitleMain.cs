@@ -11,7 +11,7 @@ public class TitleMain : Singleton<TitleMain>
         Debug.Log("click");
         if (TitleData.Instance.GameInfo.HasKey("PlayerName"))
         {
-            SceneManager.LoadScene("Stage2");
+            SceneManager.LoadScene("Home");
         }
         else
         {

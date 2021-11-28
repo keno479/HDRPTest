@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using anogamelib;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DataManager : Singleton<DataManager>
 {
@@ -136,6 +137,14 @@ public class DataManager : Singleton<DataManager>
             }
         }
         datastage.Save();
+
+        MasterStageParam stage = masterstage.list.Find(p => p.Stage_Name == SceneManager.GetActiveScene().name);
+        IL3DN.IL3DN_Snow il3dn_snow = FindObjectOfType<IL3DN.IL3DN_Snow>();
+        if (il3dn_snow != null)
+        {
+            il3dn_snow.Snow = stage.Snow;
+        }
+        //Debug.Log(SceneManager.GetActiveScene().name);
 
         if (GameInfo.HasKey("PlayerName"))
         {

@@ -11,6 +11,7 @@ public class MasterStageParam:CsvDataParam
     public int Boss_Enemy_ID;
     public int Key_Boss_ID;
     public string Scene_Name;
+    public bool Snow;
 }
 
 public class MasterStage : CsvData<MasterStageParam>
