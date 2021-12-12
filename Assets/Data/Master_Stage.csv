@@ -1,6 +1,6 @@
-﻿Stage_ID,Stage_Name,Boss_Pop_LV,Boss_Enemy_ID,Key_Boss_ID,Scene_Name,Snow
-1,Home,0,0,0,Home,FALSE
-2,Stage,10,101,0,Field1,FALSE
-3,Stage2,30,102,101,Field2,FALSE
-4,Stage3,50,103,102,Field3,TRUE
-5,Stage4,70,104,103,Field4,FALSE
+Stage_ID,Stage_Name,Boss_Pop_LV,Boss_Enemy_ID,Key_Boss_ID,Scene_Name,Snow
+1,ホーム,0,0,0,Home,FALSE
+2,島,10,101,0,Stage1,FALSE
+3,墓場,30,102,101,Stage2,FALSE
+4,雪原,50,103,102,Stage3,TRUE
+5,Stage4,70,104,103,Stage4,FALSE

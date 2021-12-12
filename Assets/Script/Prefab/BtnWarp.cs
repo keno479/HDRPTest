@@ -29,6 +29,7 @@ public class BtnWarp : MonoBehaviour
     
     public void Warp()
     {
+        Debug.Log(SceneName);
         SceneManager.LoadScene(SceneName);
     }
 }

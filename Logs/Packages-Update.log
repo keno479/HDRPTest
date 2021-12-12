@@ -47,3 +47,11 @@ The following packages were added:
   com.unity.visualscripting@1.6.1
 The following packages were updated:
   com.unity.cinemachine from version 2.6.3 to 2.7.8
+
+=== Sun Dec 12 20:07:43 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.postprocessing@2.3.0
