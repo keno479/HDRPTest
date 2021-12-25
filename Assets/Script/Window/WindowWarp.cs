@@ -27,7 +27,7 @@ public class WindowWarp : MonoBehaviour
             GameObject Warp = Instantiate(PrefabHolder.Instance.BtnWarp, areaButton) as GameObject;
             Warp.GetComponent<BtnWarp>().SetWarpTarget(q);
             WarpPortalList.Add(Warp);
-            Debug.Log(StageList.IndexOf(q));
+            //Debug.Log(StageList.IndexOf(q));
         }
     }
 }
