@@ -138,7 +138,8 @@ public class DataManager : Singleton<DataManager>
         }
         datastage.Save();
 
-        MasterStageParam stage = masterstage.list.Find(p => p.Stage_Name == SceneManager.GetActiveScene().name);
+        MasterStageParam stage = masterstage.list.Find(p => p.Scene_Name == SceneManager.GetActiveScene().name);
+        Debug.Log(stage);
         IL3DN.IL3DN_Snow il3dn_snow = FindObjectOfType<IL3DN.IL3DN_Snow>();
         if (il3dn_snow != null)
         {

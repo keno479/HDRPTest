@@ -71,7 +71,11 @@ public class UnitController : StateMachineBase<UnitController>
         {
             Anim.SetTrigger("AttackTrigger");
         }*/
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isBattle = !isBattle;
+            Anim.SetBool("isBattle", isBattle);
+        }
     }
 
     public void FightButtonDown()
@@ -119,11 +123,7 @@ public class UnitController : StateMachineBase<UnitController>
 
         FreeLook.m_XAxis.m_InputAxisValue = CameraRotateValue * 0.2f;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isBattle = !isBattle;
-            Anim.SetBool("isBattle", isBattle);
-        }
+        
     }
 
     private class Idle : StateBase<UnitController>

@@ -19,11 +19,25 @@ public class WeaponWindow : MonoBehaviour
     public TextMeshProUGUI WeaponStatus;
     public Button EquipButton;
     public Button LVUpButton;
+    public Button LArrow;
+    public Button RArrow;
     public TextMeshProUGUI GoldCost;
     public TextMeshProUGUI ItemCost;
     public TextMeshProUGUI LackText;
     public TextMeshProUGUI PageNum;
     private int WeaponIndex;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            LButton();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RButton();
+        }
+    }
 
     private void OnEnable()
     {

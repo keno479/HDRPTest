@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using anogamelib;
 
 public class Test : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             GameDirector.Instance.Heal();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            UIAssistant.Instance.ShowPage("Status");
         }
     }
 
