@@ -25,7 +25,7 @@ public class WeaponWindow : MonoBehaviour
     public TextMeshProUGUI ItemCost;
     public TextMeshProUGUI LackText;
     public TextMeshProUGUI PageNum;
-    private int WeaponIndex;
+    public int WeaponIndex;
 
     private void Update()
     {
@@ -58,12 +58,20 @@ public class WeaponWindow : MonoBehaviour
     public void LButton()
     {
         WeaponIndex -= 1;
+        if (WeaponIndex < 0)
+        {
+            WeaponIndex = 0;
+        }
         ShowWeapon(WeaponIndex);
     }
 
     public void RButton()
     {
         WeaponIndex += 1;
+        if (WeaponIndex > WeaponList.Count)
+        {
+            WeaponIndex = WeaponList.Count;
+        }
         ShowWeapon(WeaponIndex);
     }
 

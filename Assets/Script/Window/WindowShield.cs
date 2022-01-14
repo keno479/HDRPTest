@@ -29,6 +29,19 @@ public class WindowShield : MonoBehaviour
         ShowShield(ShieldIndex);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MoveL();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveR();
+        }
+    }
+
     public void EpuipButton()
     {
         DataManager.Instance.GameInfo.SetInt(Define.KeyEquipShieldID, Shield_ID);
@@ -38,12 +51,20 @@ public class WindowShield : MonoBehaviour
     public void MoveR()
     {
         ShieldIndex += 1;
+        if (ShieldIndex > ShieldList.Count)
+        {
+            ShieldIndex = ShieldList.Count;
+        }
         ShowShield(ShieldIndex);
     }
 
     public void MoveL()
     {
         ShieldIndex -= 1;
+        if (ShieldIndex < 0)
+        {
+            ShieldIndex = 0;
+        }
         ShowShield(ShieldIndex);
     }
 
