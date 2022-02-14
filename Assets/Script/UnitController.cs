@@ -6,6 +6,8 @@ using anogamelib;
 using UnityEngine.Events;
 using TMPro;
 using Cinemachine;
+using Chronos;
+using UnityEngine.EventSystems;
 
 public class UnitController : StateMachineBase<UnitController>
 {
@@ -25,14 +27,23 @@ public class UnitController : StateMachineBase<UnitController>
     public Camera cam;
     public AudioSource audios;
     public CinemachineFreeLook FreeLook;
+    private Timeline timeline;
+    public GameObject SelectedGameobject;
+    public string StateName;
+    public bool TimeSwitch;
 
-    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Anim = GetComponent<Animator>();
         audios = GetComponent<AudioSource>();
+        timeline = GetComponent<Timeline>();
         SetState(new UnitController.Idle(this));
+    }
+
+    public void OnPose(bool flag)
+    {
+        Debug.Log(flag);
     }
 
     public void OnAttackHit()
@@ -75,6 +86,11 @@ public class UnitController : StateMachineBase<UnitController>
         {
             isBattle = !isBattle;
             Anim.SetBool("isBattle", isBattle);
+        }
+        SelectedGameobject = EventSystem.current.currentSelectedGameObject;
+        if (stateCurrent != null)
+        {
+            StateName = stateCurrent.ToString();
         }
     }
 
@@ -126,17 +142,26 @@ public class UnitController : StateMachineBase<UnitController>
         
     }
 
+    
     private class Idle : StateBase<UnitController>
     {
         public override void OnEnterState()
         {
             base.OnEnterState();
             machine.CanWalk = true;
+            Debug.Log("UnitStateIdle");
         }
 
         public override void OnUpdateState()
         {
             base.OnUpdateState();
+            //Debug.Log(EventSystem.current.currentSelectedGameObject);
+            if (!machine.TimeSwitch)
+            {
+                //Debug.LogError("aaa");
+                machine.SetState(new UnitController.PoseState(machine));
+            }
+
             if (machine.isBattle)
             {
                 machine.SetState(new UnitController.Search(machine));
@@ -162,7 +187,10 @@ public class UnitController : StateMachineBase<UnitController>
         public override void OnUpdateState()
         {
             base.OnUpdateState();
-
+            if (EventSystem.current.alreadySelecting)
+            {
+                machine.SetState(new UnitController.PoseState(machine));
+            }
             if (!machine.isBattle)
             {
                 machine.SetState(new UnitController.Idle(machine));
@@ -202,12 +230,15 @@ public class UnitController : StateMachineBase<UnitController>
         {
             base.OnUpdateState();
             machine.transform.LookAt(enemy.transform);
-            Timer += Time.deltaTime;
+            Timer += machine.timeline.deltaTime;
             if (Timer >= AttackSpan)
             {
                 machine.SetState(new UnitController.Attack(machine, enemy));
             }
-
+            if (EventSystem.current.alreadySelecting)
+            {
+                machine.SetState(new UnitController.PoseState(machine));
+            }
             if (DataManager.Instance.UnitPlayer.HP <= 0)
             {
                 machine.SetState(new UnitController.DeadState(machine));
@@ -298,15 +329,20 @@ public class UnitController : StateMachineBase<UnitController>
 
     private class Freeze : StateBase<UnitController>
     {
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            GameDirector.Instance.GameOver();
+        }
         public override void OnUpdateState()
         {
             base.OnUpdateState();
-            if (DataManager.Instance.UnitPlayer.HP > 0)
+            /*if (DataManager.Instance.UnitPlayer.HP > 0)
             {
                 //Debug.Log("revive");
                 machine.Anim.SetTrigger("ReviveTrigger");
                 machine.SetState(new UnitController.Idle(machine));
-            }
+            }*/
         }
         public override void OnExitState()
         {
@@ -330,5 +366,40 @@ public class UnitController : StateMachineBase<UnitController>
     {
         UIAssistant.Instance.ShowPage("idle");
         SetCanWalk(true);
+    }
+
+    private class PoseState : StateBase<UnitController>
+    {
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            machine.CanWalk = false;
+            Timekeeper.instance.Clock("InGame").localTimeScale = 0.0f;
+            Debug.Log("pause");
+        }
+
+        public override void OnUpdateState()
+        {
+            base.OnUpdateState();
+            machine.rb.velocity = Vector3.zero;
+            machine.rb.angularVelocity = Vector3.zero;
+            //Debug.Log(EventSystem.current.currentSelectedGameObject);
+            if (machine.TimeSwitch)
+            {
+                machine.SetState(new UnitController.Idle(machine));
+            }
+            //Debug.Log(EventSystem.current.currentSelectedGameObject);
+        }
+
+        public override void OnExitState()
+        {
+            base.OnExitState();
+            machine.CanWalk = true;
+            Timekeeper.instance.Clock("InGame").localTimeScale = 1.0f;
+            Debug.Log("in");
+        }
+        public PoseState(UnitController _machine) : base(_machine)
+        {
+        }
     }
 }

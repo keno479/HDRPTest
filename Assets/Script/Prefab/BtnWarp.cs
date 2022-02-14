@@ -11,7 +11,7 @@ public class BtnWarp : MonoBehaviour
     private string SceneName;
     public Button btnWarp;
 
-    public void SetWarpTarget(MasterStageParam _param)
+    public bool SetWarpTarget(MasterStageParam _param)
     {
         DataStageParam data = DataManager.Instance.datastage.list.Find(p => p.Stage_ID == _param.Stage_ID);
 
@@ -25,6 +25,7 @@ public class BtnWarp : MonoBehaviour
             btnWarp.interactable = false;
         }
         SceneName = _param.Scene_Name;
+        return data.is_Open;
     }
     
     public void Warp()

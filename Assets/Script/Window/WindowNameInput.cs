@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Text;
 
 public class WindowNameInput : MonoBehaviour
 {
@@ -38,7 +39,9 @@ public class WindowNameInput : MonoBehaviour
     }
     public void InputValueChange(string value)
     {
+        int count = Encoding.GetEncoding("Shift_JIS").GetByteCount(value);
         InputName = value;
-        BtnOK.interactable = 0 < value.Length;
+        BtnOK.interactable = 0 < count && 10 >= count;
+        Debug.Log(count);
     }
 }

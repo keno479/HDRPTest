@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using anogamelib;
 using UnityEngine.Events;
+using Chronos;
 
 public class EnemyController : StateMachineBase<EnemyController>
 {
@@ -21,10 +22,21 @@ public class EnemyController : StateMachineBase<EnemyController>
     public MasterEnemyParam usemasterparam;
     public AudioSource Audios;
     public bool Boss;
+    private Timeline timeline;
+    //public Transform CanvasLevel;
 
     private void Start()
     {
+        timeline = GetComponent<Timeline>();
+        if (timeline == null)
+        {
+            timeline = gameObject.AddComponent<Timeline>();
+            timeline.mode = TimelineMode.Global;
+            timeline.globalClockKey = "InGame";
+        }
+        //CanvasLevel = GetComponent<LVCanvas>().canvastransform;
         SetState(new EnemyController.Standby(this));
+
     }
     public void SetUp()
     {
@@ -53,11 +65,19 @@ public class EnemyController : StateMachineBase<EnemyController>
         attack = usemasterparam.Attack;
         Audios = GetComponent<AudioSource>();
         Boss = usemasterparam.Boss;
+        //GameObject level = Instantiate(PrefabHolder.Instance.ShowEnemyLevel, CanvasLevel) as GameObject;
+        //level.GetComponent<ShowEnemyLevel>().Initialize(Enemy_Level, GetComponent<UnitController>().cam, transform.position);
         OnAnimEnemyDied EnemyDied = Anim.GetBehaviour<OnAnimEnemyDied>();
         if (EnemyDied != null)
         {
             EnemyDied.Callback = OnDied;
         }
+    }
+
+    public void OnPose(bool flag)
+    {
+        //Debug.Log("enemypose");
+        //Debug.Log(flag);
     }
 
     public bool IsFind()
@@ -146,7 +166,7 @@ public class EnemyController : StateMachineBase<EnemyController>
         {
             base.OnUpdateState();
             machine.transform.LookAt(machine.TargetTransform);
-            WaitTime += Time.deltaTime;
+            WaitTime += machine.timeline.deltaTime;
             if (WaitTime > AttackSpan)
             {
                 machine.SetState(new EnemyController.Attack(machine));
@@ -168,7 +188,7 @@ public class EnemyController : StateMachineBase<EnemyController>
             {
                 machine.Audios.PlayOneShot(AudioManager.Instance.SE_Enemy[0]);
                 GameDirector.Instance.Damage(machine.attack);
-                Debug.Log(machine.attack);
+                //Debug.Log(machine.attack);
             });
             machine.AttackEndHandler.AddListener(() =>
             {
@@ -228,7 +248,7 @@ public class EnemyController : StateMachineBase<EnemyController>
         {
             base.OnUpdateState();
 
-            RespawnTime += Time.deltaTime;
+            RespawnTime += machine.timeline.deltaTime;
             if (RespawnTime >= 1)
             {
                 machine.transform.Translate(0, DiveSpeed/100, 0);

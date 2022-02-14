@@ -34,6 +34,6 @@ public class DamageText : MonoBehaviour
         DOTween.To(value =>
         {
             Move = new Vector3(0, value);
-        }, 0, 100, 1.2f).SetEase(Ease.InBounce);
+        }, 0, 100, 1.2f).SetEase(Ease.InOutExpo);
     }
 }

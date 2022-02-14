@@ -4,21 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using anogamelib;
+using Chronos;
 
 public class Test : MonoBehaviour
 {
     public GameObject menubtn;
+    public EventBool PoseHandler;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
+            //Timekeeper.instance.Clock("InGame").paused = true;
+            PoseHandler.Invoke(true);
+            UIAssistant.Instance.ShowPage("ButtonSelected");
             select();
         }
 
-        if (EventSystem.current.enabled && Input.GetKeyDown(KeyCode.F2))
+        if (EventSystem.current.enabled && Input.GetKeyDown(KeyCode.F2)) 
         {
             cancel();
+            UIAssistant.Instance.ShowParentPage();
         }
 
         if (Input.GetKeyDown(KeyCode.H))
@@ -30,6 +36,13 @@ public class Test : MonoBehaviour
         {
             UIAssistant.Instance.ShowPage("Status");
         }
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Debug.Log("Enter");
+        }
+
+        
     }
 
     public void select()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class WindowStatus : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class WindowStatus : MonoBehaviour
         WindowUpdate();
     }
 
+    public void ButtonSelected(Button btnSelected)
+    {
+        EventSystem.current.SetSelectedGameObject(btnSelected.gameObject);
+    }
+
     public void STRUp()
     {
         if (sttsPt > 0)
@@ -43,6 +49,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt -= 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnPlusSTR);
     }
 
     public void VITUp()
@@ -53,6 +60,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt -= 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnPlusVIT);
     }
 
     public void AGIUp()
@@ -63,6 +71,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt -= 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnPlusAGI);
     }
 
     public void LUKUp()
@@ -73,6 +82,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt -= 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnPlusLUK);
     }
 
     public void STRDown()
@@ -83,6 +93,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt += 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnMinusSTR);
     }
 
     public void VITDown()
@@ -93,6 +104,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt += 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnMinusVIT);
     }
 
     public void AGIDown()
@@ -103,6 +115,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt += 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnMinusAGI);
     }
 
     public void LUKDown()
@@ -113,6 +126,7 @@ public class WindowStatus : MonoBehaviour
             sttsPt += 1;
         }
         WindowUpdate();
+        ButtonSelected(BtnMinusLUK);
     }
 
     public void WindowUpdate()
@@ -126,10 +140,10 @@ public class WindowStatus : MonoBehaviour
         BtnPlusVIT.interactable = sttsPt > 0;
         BtnPlusAGI.interactable = sttsPt > 0;
         BtnPlusLUK.interactable = sttsPt > 0;
-        BtnMinusSTR.interactable = sttsPt < DataManager.Instance.UnitPlayer.StatusPoint;
-        BtnMinusVIT.interactable = sttsPt < DataManager.Instance.UnitPlayer.StatusPoint;
-        BtnMinusAGI.interactable = sttsPt < DataManager.Instance.UnitPlayer.StatusPoint;
-        BtnMinusLUK.interactable = sttsPt < DataManager.Instance.UnitPlayer.StatusPoint;
+        BtnMinusSTR.interactable = str > DataManager.Instance.UnitPlayer.STR;
+        BtnMinusVIT.interactable = vit > DataManager.Instance.UnitPlayer.VIT;
+        BtnMinusAGI.interactable = agi > DataManager.Instance.UnitPlayer.AGI;
+        BtnMinusLUK.interactable = luk > DataManager.Instance.UnitPlayer.LUK;
     }
 
     public void Decide()

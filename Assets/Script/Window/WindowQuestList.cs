@@ -31,13 +31,13 @@ public class WindowQuestList : MonoBehaviour
             int preIndex = i - 1;
             if (nextIndex < BtnQuestList.Count)
             {
-                Navi.selectOnRight = BtnQuestList[nextIndex].GetComponent<Button>();
+                Navi.selectOnDown = BtnQuestList[nextIndex].GetComponent<Button>();
                 //Debug.Log("get");
             }
 
             if (preIndex >= 0)
             {
-                Navi.selectOnLeft = BtnQuestList[preIndex].GetComponent<Button>();
+                Navi.selectOnUp = BtnQuestList[preIndex].GetComponent<Button>();
             }
 
             Btn.navigation = Navi;

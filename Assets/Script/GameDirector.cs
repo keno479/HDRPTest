@@ -13,6 +13,8 @@ public class GameDirector : Singleton<GameDirector>
     public TextMeshProUGUI GoldText;
     public TextMeshProUGUI StoneText;
     public TextMeshProUGUI LVText;
+    public TextMeshProUGUI HPText;
+    public TextMeshProUGUI EXPText;
     public Image Badge_StatusUp;
     public Image areaDrop;
     public Image GoldIcon;
@@ -22,6 +24,8 @@ public class GameDirector : Singleton<GameDirector>
     {
         HP_Gauge.Init(DataManager.Instance.UnitPlayer.HP, DataManager.Instance.UnitPlayer.HP_max);
         EXP_Gauge.Init(DataManager.Instance.UnitPlayer.EXP, DataManager.Instance.UnitPlayer.EXP_max);
+        SetGaugeText(HPText, DataManager.Instance.UnitPlayer.HP_max, DataManager.Instance.UnitPlayer.HP);
+        SetGaugeText(EXPText, DataManager.Instance.UnitPlayer.EXP_max, DataManager.Instance.UnitPlayer.EXP);
         ShowGold(DataManager.Instance.GameInfo.GetInt(Define.KeyGold));
         ShowStone(DataManager.Instance.GameInfo.GetInt(Define.KeyStone));
         ShowLV();
@@ -112,7 +116,13 @@ public class GameDirector : Singleton<GameDirector>
         }
         EXP_Gauge.Init(DataManager.Instance.UnitPlayer.EXP,DataManager.Instance.UnitPlayer.EXP_max);
         HP_Gauge.Init(DataManager.Instance.UnitPlayer.HP, DataManager.Instance.UnitPlayer.HP_max);
+        SetGaugeText(EXPText, DataManager.Instance.UnitPlayer.EXP_max, DataManager.Instance.UnitPlayer.EXP);
         DataManager.Instance.dataunit.Save();
+    }
+
+    public void SetGaugeText(TextMeshProUGUI textValue,int max,int current)
+    {
+        textValue.text = $"{current}/{max}";
     }
 
     public void DropItem(int _enemy_id)
@@ -164,5 +174,16 @@ public class GameDirector : Singleton<GameDirector>
 
         stagedata.is_Open = true;
         DataManager.Instance.datastage.Save();
+    }
+
+    public void GameOver()
+    {
+        UIAssistant.Instance.ShowPage("GameOver");
+    }
+
+    public void Respawn()
+    {
+        DataManager.Instance.UnitPlayer.HP = DataManager.Instance.UnitPlayer.HP_max;
+        DataManager.Instance.dataunit.Save();
     }
 }

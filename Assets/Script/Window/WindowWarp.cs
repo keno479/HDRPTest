@@ -9,26 +9,31 @@ public class WindowWarp : MonoBehaviour
     public Transform areaButton;
     private List<MasterStageParam> StageList = new List<MasterStageParam>();
     private List<GameObject> WarpPortalList = new List<GameObject>();
+    private List<GameObject> DeleteObjectList = new List<GameObject>();
 
     private void OnEnable()
     {
         StageList = DataManager.Instance.masterstage.list;
 
-
-        if (WarpPortalList.Count > 0)
+        WarpPortalList.Clear();
+        if (DeleteObjectList.Count > 0)
         {
-            foreach(GameObject warp in WarpPortalList)
+            foreach(GameObject warp in DeleteObjectList)
             {
                 Destroy(warp);
             }
-            WarpPortalList.Clear();
+            DeleteObjectList.Clear();
         }
 
         foreach(MasterStageParam q in StageList)
         {
             GameObject Warp = Instantiate(PrefabHolder.Instance.BtnWarp, areaButton) as GameObject;
-            Warp.GetComponent<BtnWarp>().SetWarpTarget(q);
-            WarpPortalList.Add(Warp);
+            
+            if (Warp.GetComponent<BtnWarp>().SetWarpTarget(q)) 
+            {
+                WarpPortalList.Add(Warp);
+            }
+            DeleteObjectList.Add(Warp);
             //Debug.Log(StageList.IndexOf(q));
         }
         EventSystem.current.SetSelectedGameObject(WarpPortalList[0]);

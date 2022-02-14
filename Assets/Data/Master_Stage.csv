@@ -3,4 +3,4 @@ Stage_ID,Stage_Name,Boss_Pop_LV,Boss_Enemy_ID,Key_Boss_ID,Scene_Name,Snow
 2,島,10,101,0,Stage1,FALSE
 3,墓場,30,102,101,Stage2,FALSE
 4,雪原,50,103,102,Stage3,TRUE
-5,Stage4,70,104,103,Stage4,FALSE
+5,丘,70,104,103,Stage4,FALSE

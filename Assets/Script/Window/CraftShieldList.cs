@@ -41,13 +41,13 @@ public class CraftShieldList : MonoBehaviour
             int preIndex = i - 1;
             if (nextIndex < CraftList.Count)
             {
-                Navi.selectOnRight = CraftList[nextIndex].GetComponent<Button>();
+                Navi.selectOnDown = CraftList[nextIndex].GetComponent<Button>();
                 //Debug.Log("get");
             }
 
             if (preIndex >= 0)
             {
-                Navi.selectOnLeft = CraftList[preIndex].GetComponent<Button>();
+                Navi.selectOnUp = CraftList[preIndex].GetComponent<Button>();
             }
 
             Btn.navigation = Navi;

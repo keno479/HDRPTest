@@ -18,6 +18,4 @@ public class SceneMove : MonoBehaviour
     {
         SceneManager.LoadScene(SceneName);
     }
-
-    
 }

@@ -6,9 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class TitleMain : Singleton<TitleMain>
 {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnClick();
+        }
+    }
+
     public void OnClick()
     {
-        Debug.Log("click");
+        //Debug.Log("click");
         if (TitleData.Instance.GameInfo.HasKey("PlayerName"))
         {
             SceneManager.LoadScene("Home");

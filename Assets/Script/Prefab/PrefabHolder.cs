@@ -11,4 +11,5 @@ public class PrefabHolder : Singleton<PrefabHolder>
     public GameObject CraftItem;
     public GameObject Quest;
     public GameObject BtnWarp;
+    public GameObject ShowEnemyLevel;
 }
