@@ -107,12 +107,12 @@ public class GameDirector : Singleton<GameDirector>
         {
             DataManager.Instance.UnitPlayer.LV += 1;
             DataManager.Instance.UnitPlayer.EXP -= DataManager.Instance.UnitPlayer.EXP_max;
-            DataManager.Instance.UnitPlayer.EXP_max += 10;
+            DataManager.Instance.UnitPlayer.EXP_max += DataManager.Instance.UnitPlayer.LV * 20;
             ShowLV();
             DataManager.Instance.UnitPlayer.StatusPoint += 3;
             DataManager.Instance.UnitPlayer.Attack += 1;
             DataManager.Instance.UnitPlayer.Defense += 1;
-            DataManager.Instance.UnitPlayer.HP_max += 10;
+            DataManager.Instance.UnitPlayer.HP_max += DataManager.Instance.UnitPlayer.LV * 10;
         }
         EXP_Gauge.Init(DataManager.Instance.UnitPlayer.EXP,DataManager.Instance.UnitPlayer.EXP_max);
         HP_Gauge.Init(DataManager.Instance.UnitPlayer.HP, DataManager.Instance.UnitPlayer.HP_max);

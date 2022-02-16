@@ -264,7 +264,13 @@ public class UnitController : StateMachineBase<UnitController>
                 if (enemy.Damage(attack))
                 {
                     DataManager.Instance.dataenemy.AddKillCount(enemy.Enemy_ID);
-                    GameDirector.Instance.DropItem(enemy.Enemy_ID);
+                    float itemluk = DataManager.Instance.UnitPlayer.LUK - 1;
+                    float itemget = Random.Range(0, 100);
+                    Debug.Log(itemluk + "/" + itemget);
+                    if (itemluk>=itemget) 
+                    {
+                        GameDirector.Instance.DropItem(enemy.Enemy_ID);
+                    }
                     GameDirector.Instance.DropGold(enemy.usemasterparam);
                     GameDirector.Instance.EscOn();
                     machine.CanWalk = true;

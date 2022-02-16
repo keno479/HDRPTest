@@ -186,9 +186,25 @@ public class EnemyController : StateMachineBase<EnemyController>
             base.OnEnterState();
             machine.AttackHitHandler.AddListener(() =>
             {
-                machine.Audios.PlayOneShot(AudioManager.Instance.SE_Enemy[0]);
-                GameDirector.Instance.Damage(machine.attack);
-                //Debug.Log(machine.attack);
+                float miss = DataManager.Instance.UnitPlayer.AGI;
+                float hit = Random.Range(0, 1000);
+                if (hit > miss) 
+                {
+                    machine.Audios.PlayOneShot(AudioManager.Instance.SE_Enemy[0]);
+                    int damage = machine.attack - DataManager.Instance.UnitPlayer.GetTotalDefense();
+                    if (damage < 0)
+                    {
+                        damage = 0;
+                        damage += 1;
+                    }
+                    else
+                    {
+                        damage += 1;
+                    }
+                    GameDirector.Instance.Damage(damage);
+                    //Debug.Log(machine.attack);
+                }
+
             });
             machine.AttackEndHandler.AddListener(() =>
             {
